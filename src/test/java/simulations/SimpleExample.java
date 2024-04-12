@@ -30,6 +30,8 @@ public class SimpleExample extends Simulation {
 
                 EmulateWork(222);
 
+                session = session.set("latency", 555);
+
                 return session;
             }),
             pause(1)

@@ -25,12 +25,12 @@ public class KafkaExample extends Simulation {
 
         var scenario = scenario(name)
             .exec(
-                genericAction("step_1", session -> {
+                genericAction("message_1", session -> {
                     producer.send(new ProducerRecord<>(topic, "key-my-1", "value-my-1"));
 
                     return session;
                 }),
-                genericAction("step_2", session -> {
+                genericAction("message_2", session -> {
                     producer.send(new ProducerRecord<>(topic, "key-my-2", "value-my-2"));
 
                     return session;
