@@ -50,11 +50,6 @@ class GenericAction(val name: String,
       javaapiSession = javaapiSession.remove("latency")
     }
 
-    javaapiSession.groups()
-
-    javaapiSession = new io.gatling.javaapi.core.Session(
-      javaapiSession.asScala().logGroupRequestTimings(startTimestamp, endTimestamp))
-
     statsEngine.logResponse(
       session.scenario,
       session.groups,
@@ -65,6 +60,6 @@ class GenericAction(val name: String,
       None,
       message)
 
-    next ! javaapiSession.asScala()
+    next ! javaapiSession.asScala().logGroupRequestTimings(startTimestamp, endTimestamp)
   }
 }
