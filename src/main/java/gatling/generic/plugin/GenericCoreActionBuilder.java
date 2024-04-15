@@ -9,16 +9,16 @@ import java.util.function.Function;
 
 public class GenericCoreActionBuilder implements io.gatling.core.action.builder.ActionBuilder {
     private final String name;
-    private final Function<Session, Session> callback;
+    private final Function<Session, Session> function;
 
-    public GenericCoreActionBuilder(String name, Function<Session, Session> callback) {
+    public GenericCoreActionBuilder(String name, Function<Session, Session> function) {
         this.name = name;
-        this.callback = callback;
+        this.function = function;
     }
 
     @Override
     public Action build(ScenarioContext ctx, Action next) {
-        return new GenericAction(name, callback, ctx, next);
+        return new GenericAction(name, function, ctx, next);
     }
 
     @Override

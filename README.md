@@ -7,8 +7,6 @@ code into `genericAction("name", session -> {})` and Gatling will do everything 
 As of now there is no any maven package or prebuilt `.jar` files to integrate into your project.
 However, it's a matter only to download a few classes from this repository:
 - `GenericAction` - scala class that takes care of `genericAction` executing and metrics handling
-- `GenericProtocolBuilder`
-- `GenericProtocol`
 - `GenericCoreActionBuilder`
 - `GenericActionBuilder`
 - `GenericDsl` - java class that provides `genericAction` in a javaapi of Gatling
@@ -40,8 +38,7 @@ public class SimpleExample extends Simulation {
         );
 
     {
-        setUp(scenario.injectClosed(constantConcurrentUsers(1).during(10)))
-            .protocols(genericProtocol());
+        setUp(scenario.injectClosed(constantConcurrentUsers(1).during(10)));
     }
 }
 ```
@@ -69,8 +66,7 @@ public class SimpleExample extends Simulation {
             ));
 
     {
-        setUp(scenario.injectClosed(constantConcurrentUsers(1).during(10)))
-            .protocols(genericProtocol());
+        setUp(scenario.injectClosed(constantConcurrentUsers(1).during(10)));
     }
 }
 ```
@@ -157,8 +153,7 @@ public class KafkaExample extends Simulation {
     }
 
     {
-        setUp(buildScenario("FirstScenario").injectClosed(constantConcurrentUsers(1).during(10))
-        ).protocols(genericProtocol());
+        setUp(buildScenario("FirstScenario").injectClosed(constantConcurrentUsers(1).during(10)));
     }
 }
 ```

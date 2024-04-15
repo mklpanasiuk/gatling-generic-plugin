@@ -9,8 +9,8 @@ import java.util.function.Function;
 public class GenericActionBuilder implements ActionBuilder {
     private final io.gatling.core.action.builder.ActionBuilder wrapper;
 
-    public GenericActionBuilder(String name, Function<Session, Session> callback) {
-        wrapper = new GenericCoreActionBuilder(name, callback);
+    public GenericActionBuilder(String name, Function<Session, Session> function) {
+        wrapper = new GenericCoreActionBuilder(name, function);
     }
 
     @Override

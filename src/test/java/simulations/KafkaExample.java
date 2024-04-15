@@ -8,7 +8,6 @@ import org.apache.kafka.clients.producer.ProducerRecord;
 import java.util.Properties;
 
 import static gatling.generic.plugin.GenericDsl.genericAction;
-import static gatling.generic.plugin.GenericDsl.genericProtocol;
 import static io.gatling.javaapi.core.CoreDsl.*;
 
 public class KafkaExample extends Simulation {
@@ -42,9 +41,7 @@ public class KafkaExample extends Simulation {
     }
 
     {
-        setUp(
-            buildScenario("FirstScenario").injectClosed(constantConcurrentUsers(1).during(10))
-        ).protocols(genericProtocol());
+        setUp(buildScenario("FirstScenario").injectClosed(constantConcurrentUsers(1).during(10)));
     }
 }
 

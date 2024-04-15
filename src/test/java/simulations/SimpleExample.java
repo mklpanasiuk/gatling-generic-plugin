@@ -5,7 +5,6 @@ import io.gatling.javaapi.core.ScenarioBuilder;
 import io.gatling.javaapi.core.Simulation;
 
 import static gatling.generic.plugin.GenericDsl.genericAction;
-import static gatling.generic.plugin.GenericDsl.genericProtocol;
 import static io.gatling.javaapi.core.CoreDsl.*;
 
 public class SimpleExample extends Simulation {
@@ -38,9 +37,7 @@ public class SimpleExample extends Simulation {
         );
 
     {
-        setUp(
-            scenario.injectClosed(constantConcurrentUsers(1).during(10))
-        ).protocols(genericProtocol());
+        setUp(scenario.injectClosed(constantConcurrentUsers(1).during(10)));
     }
 
     private void EmulateWork(long ms) {

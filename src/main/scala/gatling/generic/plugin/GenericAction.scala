@@ -22,7 +22,6 @@ class GenericAction(val name: String,
   final override protected def execute(session: io.gatling.core.session.Session): Unit = {
     var startTimestamp = clock.nowMillis
     var endTimestamp = clock.nowMillis
-    var responseCode = Option("200")
     var message: Option[String] = None
 
     var javaapiSession = new io.gatling.javaapi.core.Session(session)
@@ -33,14 +32,13 @@ class GenericAction(val name: String,
       OK
     } match {
       case Success(value) =>
-        endTimestamp = clock.nowMillis
         value
       case Failure(exception) =>
-        endTimestamp = clock.nowMillis
-        responseCode = Option("404")
         message = Option(exception.getMessage)
         KO
     }
+
+    endTimestamp = clock.nowMillis
 
     if (javaapiSession.contains("latency")) {
       if (javaapiSession.contains("startTimestamp")) {
@@ -51,6 +49,8 @@ class GenericAction(val name: String,
       endTimestamp = startTimestamp + javaapiSession.getString("latency").toLong
       javaapiSession = javaapiSession.remove("latency")
     }
+
+    javaapiSession.groups()
 
     javaapiSession = new io.gatling.javaapi.core.Session(
       javaapiSession.asScala().logGroupRequestTimings(startTimestamp, endTimestamp))
