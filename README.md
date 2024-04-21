@@ -14,6 +14,11 @@ However, it's a matter only to download a few classes from this repository:
 It's up to you to save, share and extend this minimum amount of classes to make your Gatling 
 really powerful load generator out of the box.
 
+## Running
+To execute Gatling simulation:
+1 run src/test/java/Engine.java
+2 to specify simulation name use following property .simulationClass(SimpleExample.class.getName());
+
 ## Examples
 This repository contains two examples in **[simulations](https://github.com/mklpanasiuk/gatling-generic-plugin/tree/main/src/test/java/simulations)** 
 folder, one for emulating some work, and another one for Apache Kafka. Below you can look at basic ideas 

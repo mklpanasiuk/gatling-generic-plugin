@@ -10,10 +10,10 @@ import io.gatling.javaapi.core.Session
 import java.util.function.Function
 import scala.util.{Failure, Success, Try}
 
-class GenericAction(val name: String,
-                    val function: Function[Session, Session],
-                    val ctx: ScenarioContext,
-                    val next: Action) extends ExitableAction {
+class GenericActionScala(val name: String,
+                         val function: Function[Session, Session],
+                         val ctx: ScenarioContext,
+                         val next: Action) extends ExitableAction {
 
   override def statsEngine: StatsEngine = ctx.coreComponents.statsEngine
 

@@ -18,7 +18,7 @@ public class GenericCoreActionBuilder implements io.gatling.core.action.builder.
 
     @Override
     public Action build(ScenarioContext ctx, Action next) {
-        return new GenericAction(name, function, ctx, next);
+        return new GenericActionScala(name, function, ctx, next);
     }
 
     @Override
