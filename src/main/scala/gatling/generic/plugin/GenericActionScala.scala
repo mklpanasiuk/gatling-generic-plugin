@@ -21,7 +21,6 @@ class GenericActionScala(val name: String,
 
   final override protected def execute(session: io.gatling.core.session.Session): Unit = {
     var startTimestamp = clock.nowMillis
-    var endTimestamp = clock.nowMillis
     var message: Option[String] = None
 
     var javaapiSession = new io.gatling.javaapi.core.Session(session)
@@ -38,15 +37,15 @@ class GenericActionScala(val name: String,
         KO
     }
 
-    endTimestamp = clock.nowMillis
+    var endTimestamp = clock.nowMillis
 
     if (javaapiSession.contains("latency")) {
       if (javaapiSession.contains("startTimestamp")) {
-        startTimestamp = javaapiSession.getString("startTimestamp").toLong
+        startTimestamp = javaapiSession.getLong("startTimestamp")
         javaapiSession = javaapiSession.remove("startTimestamp")
       }
 
-      endTimestamp = startTimestamp + javaapiSession.getString("latency").toLong
+      endTimestamp = startTimestamp + javaapiSession.getLong("latency")
       javaapiSession = javaapiSession.remove("latency")
     }
 
