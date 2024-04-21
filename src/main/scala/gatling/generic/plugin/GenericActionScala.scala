@@ -10,10 +10,10 @@ import io.gatling.javaapi.core.Session
 import java.util.function.Function
 import scala.util.{Failure, Success, Try}
 
-class GenericAction(val name: String,
-                    val function: Function[Session, Session],
-                    val ctx: ScenarioContext,
-                    val next: Action) extends ExitableAction {
+class GenericActionScala(val name: String,
+                         val function: Function[Session, Session],
+                         val ctx: ScenarioContext,
+                         val next: Action) extends ExitableAction {
 
   override def statsEngine: StatsEngine = ctx.coreComponents.statsEngine
 
@@ -21,7 +21,6 @@ class GenericAction(val name: String,
 
   final override protected def execute(session: io.gatling.core.session.Session): Unit = {
     var startTimestamp = clock.nowMillis
-    var endTimestamp = clock.nowMillis
     var message: Option[String] = None
 
     var javaapiSession = new io.gatling.javaapi.core.Session(session)
@@ -38,15 +37,15 @@ class GenericAction(val name: String,
         KO
     }
 
-    endTimestamp = clock.nowMillis
+    var endTimestamp = clock.nowMillis
 
     if (javaapiSession.contains("latency")) {
       if (javaapiSession.contains("startTimestamp")) {
-        startTimestamp = javaapiSession.getString("startTimestamp").toLong
+        startTimestamp = javaapiSession.getLong("startTimestamp")
         javaapiSession = javaapiSession.remove("startTimestamp")
       }
 
-      endTimestamp = startTimestamp + javaapiSession.getString("latency").toLong
+      endTimestamp = startTimestamp + javaapiSession.getLong("latency")
       javaapiSession = javaapiSession.remove("latency")
     }
 
