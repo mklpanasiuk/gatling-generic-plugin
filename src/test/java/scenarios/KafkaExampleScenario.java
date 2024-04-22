@@ -1,18 +1,16 @@
 package scenarios;
 
 import io.gatling.javaapi.core.ScenarioBuilder;
-import io.gatling.javaapi.core.Simulation;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerRecord;
 
 import java.util.Properties;
 
 import static gatling.generic.plugin.GenericDsl.genericAction;
-import static io.gatling.javaapi.core.CoreDsl.pause;
 import static io.gatling.javaapi.core.CoreDsl.scenario;
 
 
-public class KafkaExampleScenario extends Simulation {
+public class KafkaExampleScenario {
 
 
     public ScenarioBuilder mainScenario() {
