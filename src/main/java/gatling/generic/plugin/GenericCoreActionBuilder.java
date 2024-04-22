@@ -1,13 +1,14 @@
 package gatling.generic.plugin;
 
 import io.gatling.core.action.Action;
+import io.gatling.core.action.builder.ActionBuilder;
 import io.gatling.core.structure.ChainBuilder;
 import io.gatling.core.structure.ScenarioContext;
 import io.gatling.javaapi.core.Session;
 
 import java.util.function.Function;
 
-public class GenericCoreActionBuilder implements io.gatling.core.action.builder.ActionBuilder {
+public class GenericCoreActionBuilder implements ActionBuilder {
     private final String name;
     private final Function<Session, Session> function;
 
@@ -23,6 +24,6 @@ public class GenericCoreActionBuilder implements io.gatling.core.action.builder.
 
     @Override
     public ChainBuilder toChainBuilder() {
-        return io.gatling.core.action.builder.ActionBuilder.super.toChainBuilder();
+        return ActionBuilder.super.toChainBuilder();
     }
 }

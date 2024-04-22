@@ -1,5 +1,6 @@
 package gatling.generic.plugin;
 
+import gatling.generic.plugin.GenericCoreActionBuilder;
 import io.gatling.javaapi.core.ActionBuilder;
 import io.gatling.javaapi.core.ChainBuilder;
 import io.gatling.javaapi.core.Session;
