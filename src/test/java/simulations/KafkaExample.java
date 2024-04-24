@@ -10,7 +10,6 @@ public class KafkaExample extends Simulation {
 
     ScenarioBuilder scenario = new KafkaExampleScenario().mainScenario();
 
-
     {
         setUp(scenario.injectClosed(constantConcurrentUsers(1).during(10)));
     }

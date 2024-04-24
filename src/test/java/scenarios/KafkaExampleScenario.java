@@ -23,19 +23,19 @@ public class KafkaExampleScenario {
         var topic = "my-topic";
 
         return scenario("Kafka Example")
-                .exec(
-                        genericAction("message_1", session -> {
-                            producer.send(new ProducerRecord<>(topic, "key-my-1", "value-my-1"));
+            .exec(
+                genericAction("message_1", session -> {
+                    producer.send(new ProducerRecord<>(topic, "key-my-1", "value-my-1"));
 
-                            return session;
-                        }))
-                .exec(
-                        genericAction("message_2", session -> {
-                            producer.send(new ProducerRecord<>(topic, "key-my-2", "value-my-2"));
+                    return session;
+                }))
+            .exec(
+                genericAction("message_2", session -> {
+                    producer.send(new ProducerRecord<>(topic, "key-my-2", "value-my-2"));
 
-                            return session;
-                        }))
-                .pause(1);
+                    return session;
+                }))
+            .pause(1);
 
     }
 }
