@@ -13,13 +13,5 @@ public class SimpleExample extends Simulation {
     {
         setUp(scenario.injectClosed(constantConcurrentUsers(1).during(10)));
     }
-
-    private void EmulateWork(long ms) {
-        try {
-            Thread.sleep(ms);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
-    }
 }
 

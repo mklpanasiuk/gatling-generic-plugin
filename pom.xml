@@ -33,38 +33,63 @@
 
     <build>
         <plugins>
+
             <plugin>
                 <groupId>net.alchim31.maven</groupId>
                 <artifactId>scala-maven-plugin</artifactId>
                 <version>${scala-maven-plugin.version}</version>
+                <executions>
+                    <execution>
+                        <id>scala-compile-first</id>
+                        <phase>process-resources</phase>
+                        <goals>
+                            <goal>add-source</goal>
+                            <goal>compile</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven-compiler-plugin.version}</version>
                 <configuration>
                     <source>${maven.compiler.release}</source>
                     <target>${maven.compiler.release}</target>
                 </configuration>
             </plugin>
 
-
             <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-resources-plugin</artifactId>
                 <version>${maven-resources-plugin.version}</version>
             </plugin>
             <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
                 <version>${maven-jar-plugin.version}</version>
             </plugin>
+
             <plugin>
-                <groupId>io.gatling</groupId>
-                <artifactId>gatling-maven-plugin</artifactId>
-                <version>${gatling-maven-plugin.version}</version>
-                <configuration>
-                    <!-- Enterprise Cloud (https://cloud.gatling.io/) configuration reference: https://gatling.io/docs/gatling/reference/current/extensions/maven_plugin/#working-with-gatling-enterprise-cloud -->
-                    <!-- Enterprise Self-Hosted configuration reference: https://gatling.io/docs/gatling/reference/current/extensions/maven_plugin/#working-with-gatling-enterprise-self-hosted -->
-                </configuration>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>3.2.0</version>
+                <executions>
+                    <execution>
+                        <id>run-engine</id>
+                        <phase>test-compile</phase>
+                        <goals>
+                            <goal>java</goal>
+                        </goals>
+                        <configuration>
+                            <classpathScope>test</classpathScope>
+                            <mainClass>Engine</mainClass>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
+
         </plugins>
     </build>
 </project>

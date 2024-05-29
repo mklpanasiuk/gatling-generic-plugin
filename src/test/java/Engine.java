@@ -12,5 +12,7 @@ public class Engine {
             .simulationClass(SimpleExample.class.getName());
 
         Gatling.fromMap(props.build());
+
+        System.exit(0);
     }
 }
